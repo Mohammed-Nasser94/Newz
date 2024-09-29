@@ -1,2 +1,0 @@
-# Newz
-News api project
