@@ -24,33 +24,101 @@ color:darkolivegreen;
           transform:scale(1.1) ;
 }
 
+/* ---- Home landing page (light, professional) ------------------ */
 .vhHome{
-          margin-top: 70px;
+          height: 100vh;               /* fill the screen, no page scroll */
+          padding: 88px 28px 28px;     /* top clears the fixed navbar */
+          box-sizing: border-box;
+          background: radial-gradient(1200px 600px at 50% -10%, #eef2f9 0%, #f6f7fb 45%, #eceef3 100%);
+}
+
+.homeGrid{
+          height: 100%;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
+          gap: 24px;
 }
 
 .homeCard{
-          height: 400px;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 18px;
+          min-height: 0;
+          padding: 24px;
+          background: #ffffff;
+          border: 1px solid #e7e9ef;
+          border-radius: 22px;
           overflow: hidden;
-          
-          
+          text-decoration: none;
+          box-shadow: 0 10px 30px rgba(17, 24, 39, 0.05);
+          transition: transform .35s cubic-bezier(.2,.7,.3,1),
+                      box-shadow .35s ease, border-color .35s ease;
 }
+/* subtle accent bar that grows on hover */
+.homeCard::after{
+          content: "";
+          position: absolute;
+          left: 0; right: 0; bottom: 0;
+          height: 4px;
+          background: linear-gradient(90deg, #6366f1, #22d3ee);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform .4s ease;
+}
+.homeCard:hover{
+          transform: translateY(-8px);
+          border-color: #d6dae4;
+          box-shadow: 0 22px 48px rgba(17, 24, 39, 0.14);
+}
+.homeCard:hover::after{ transform: scaleX(1); }
 
-
+/* small circular white badge holding the logo */
+.homeCard__imgWrap{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: clamp(84px, 12vh, 130px);
+          height: clamp(84px, 12vh, 130px);
+          padding: 20px;
+          background: #ffffff;
+          border: 1px solid #eef0f5;
+          border-radius: 50%;
+          box-shadow: 0 6px 16px rgba(17, 24, 39, 0.08);
+          transition: transform .4s ease, box-shadow .4s ease;
+}
+.homeCard:hover .homeCard__imgWrap{
+          transform: scale(1.06);
+          box-shadow: 0 10px 24px rgba(17, 24, 39, 0.14);
+}
 
 .cardImg{
-          transition: transform 1s;
-}
-.cardImg:hover{
-          transform: scale(1.2);
-          
-         
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
 }
 
-
-
-.custom-size {
-          width: 100%; /* Adjust the percentage as needed */
-          max-width: 300px; /* Set a max-width to prevent the image from growing too large */
-          
-        }
-        
+.homeCard__label{
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-weight: 700;
+          font-size: 1.05rem;
+          letter-spacing: .2px;
+          color: #1f2430;
+}
+/* animated "explore" arrow that slides in on hover */
+.homeCard__label::after{
+          content: "\2192";               /* → */
+          color: #6366f1;
+          opacity: 0;
+          transform: translateX(-6px);
+          transition: opacity .3s ease, transform .3s ease;
+}
+.homeCard:hover .homeCard__label::after{
+          opacity: 1;
+          transform: translateX(0);
+}
